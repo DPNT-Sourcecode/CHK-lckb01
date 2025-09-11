@@ -42,12 +42,9 @@ class MyTestCase(unittest.TestCase):
 
     def test_blah(self):
         solution = CheckoutSolution()
-        response = solution.checkout("A")
-        assert response == 50
-        response = solution.checkout("AA")
-        assert response == 100
+        response = solution.checkout("EE")
+        assert response == 80
+
 
 if __name__ == '__main__':
     unittest.main()
-
-

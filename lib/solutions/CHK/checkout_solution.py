@@ -20,9 +20,10 @@ class CheckoutSolution:
             skus = skus.replace(sku, "")
         for item in self.reprocess.keys():
             self._reprocess_item(item)
+        total = self._calculate_total()
         self.reprocess = {}
         self.total = {}
-        return -1 if skus else self._calculate_total()
+        return -1 if skus else total
 
     def _calculate_total(self):
         total = 0
@@ -50,5 +51,6 @@ class CheckoutSolution:
         price_with_free = self._calculate_cost(sku, self.total[sku]["quantity"] - self.reprocess[sku])
         total_before = self.total[sku]["price"]
         self.total[sku]["price"] = price_with_free if total_before > price_with_free else price_with_free
+
 
 

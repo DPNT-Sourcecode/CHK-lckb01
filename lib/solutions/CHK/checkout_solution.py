@@ -4,10 +4,11 @@ from math import floor
 class CheckoutSolution:
 
     def __init__(self):
-        self.prices = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
+        self.prices = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40, "F": 10}
         self.offers = {"A":[{"quantity": 5, "price": 200}, {"quantity": 3, "price": 130}],
                        "B": [{"quantity": 2, "price": 45}],
-                       "E": [{"quantity": 2, "price": 80, "free": "B"}]
+                       "E": [{"quantity": 2, "price": 80, "free": "B"}],
+                       "F": [{"quantity": 2, "price": 2, "free": "F"}],
                        }
         self.total = {}
         self.reprocess = {}

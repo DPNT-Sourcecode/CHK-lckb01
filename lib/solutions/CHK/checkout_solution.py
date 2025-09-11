@@ -98,15 +98,16 @@ class CheckoutSolution:
         return list_of_letters_to_remove
 
     def _add_group_offer_total(self, count_of_offer:int):
-        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"])
+        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"]*count_of_offer)
 
     @staticmethod
     def _create_list_of_letter(count_per_letter:list, total: int):
         letter_list = []
         for item in count_per_letter:
             letters_used = (item[0] - item[0]//3) if item[0] < 3 else (item[0] - item[0]%3)
-            letter_list.append(item[1]*())
+            letter_list.append(item[1]*letters_used)
         return letter_list
+
 
 
 

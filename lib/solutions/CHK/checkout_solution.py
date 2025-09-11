@@ -34,6 +34,7 @@ class CheckoutSolution:
         skus = self._remove_group_offers_from_skus(skus)
         for sku in self.prices.keys():
             sku_count = skus.count(sku)
+            price = self._calculate_cost(sku, sku_count)
             self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count) if sku_count > 0 else 0)
             skus = skus.replace(sku, "")
         for item in self.reprocess.keys():
@@ -105,6 +106,7 @@ class CheckoutSolution:
         for item in count_per_letter:
             letter_list.append(item[1]*(item[0] - item[0]//3))
         return letter_list
+
 
 
 

@@ -87,11 +87,21 @@ class CheckoutSolution:
 
     def list_of_number_of_group_offers_per_letter(self, count_per_letter:list):
         list_of_letters_to_remove = []
+        count_of_offers = 0
         length_of_letter_count = len(count_per_letter)
         if length_of_letter_count < 3:
             return list_of_letters_to_remove
         elif length_of_letter_count == 3:
             count_of_offers = count_per_letter[-1]
+            self._add_group_offer_total(count_of_offers)
+
+
+    def _add_group_offer_total(self, count_of_offer:int):
+        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"])
+
+    def _create_list_of_letter(self, count_per_letter:list, total: int):
+        for count, letter in (count_per_letter):
+            return
 
 
 

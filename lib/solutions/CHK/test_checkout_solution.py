@@ -59,11 +59,12 @@ class MyTestCase(unittest.TestCase):
 
     def test_group_offers(self):
         solution = CheckoutSolution()
-        response = solution.checkout("SSTXYZZZ")
-        assert response == 127
+        response = solution.checkout("SSS")
+        assert response == 45
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
 

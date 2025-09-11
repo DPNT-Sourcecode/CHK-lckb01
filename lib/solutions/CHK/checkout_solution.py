@@ -48,6 +48,7 @@ class CheckoutSolution:
             return item_count * self.prices[item]
 
     def _reprocess_item(self, sku:str):
-        price_with_free = self._calculate_cost(sku, self.total[sku]["quantity"] - self.reprocess[sku])
-        total_before = self.total[sku]["price"]
-        self.total[sku]["price"] = price_with_free if total_before > price_with_free else price_with_free
+        if self.total[sku]["quantity"]:
+            price_with_free = self._calculate_cost(sku, self.total[sku]["quantity"] - self.reprocess[sku])
+            total_before = self.total[sku]["price"]
+            self.total[sku]["price"] = price_with_free if total_before > price_with_free else price_with_free

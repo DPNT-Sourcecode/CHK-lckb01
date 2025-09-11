@@ -72,9 +72,9 @@ class CheckoutSolution:
             self.total[sku]["price"] = price_with_free if total_before > price_with_free else price_with_free
 
     def _remove_group_offers_from_skus(self, skus:str):
-        letters_to_be_removed = []
         count_per_letter = self._get_count_of_each_letter_in_group_offers(skus)
-
+        for item in self._list_of_number_of_group_offers_per_letter(count_per_letter):
+            skus = skus.replace(item, "", 1)
         return skus
 
     def _get_count_of_each_letter_in_group_offers(self, skus:str):
@@ -83,25 +83,36 @@ class CheckoutSolution:
             count = skus.count(letter)
             if count:
                 count_per_letter.append((count, letter))
-        return count_per_letter.sort(reverse=True)
+        count_per_letter.sort(reverse=True)
+        return count_per_letter
 
-    def list_of_number_of_group_offers_per_letter(self, count_per_letter:list):
+    def _list_of_number_of_group_offers_per_letter(self, count_per_letter:list):
         list_of_letters_to_remove = []
         count_of_offers = 0
         length_of_letter_count = len(count_per_letter)
         if length_of_letter_count < 3:
             return list_of_letters_to_remove
         elif length_of_letter_count == 3:
-            count_of_offers = count_per_letter[-1]
+            count_of_offers = count_per_letter[-1][0]
             self._add_group_offer_total(count_of_offers)
-
+            list_of_letters_to_remove = self._create_list_of_letter(count_per_letter, count_of_offers)
+        else:
+            sum_of_last_counts = sum(i for i,j in count_per_letter[-(length_of_letter_count - 2)])
+            second_largest_count = count_of_offers[1][0]
+            count_of_offers =  second_largest_count if sum_of_last_counts <= sum_of_last_counts else sum_of_last_counts
+            self._add_group_offer_total(count_of_offers)
+            list_of_letters_to_remove = self._create_list_of_letter(count_per_letter, count_of_offers)
+        return list_of_letters_to_remove
 
     def _add_group_offer_total(self, count_of_offer:int):
         self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"])
 
-    def _create_list_of_letter(self, count_per_letter:list, total: int):
+    @staticmethod
+    def _create_list_of_letter(count_per_letter:list, total: int):
         letter_list = []
         for item in count_per_letter:
-            letter_list.append()
+            letter_list.append(item[1]*total)
+        return letter_list
+
 
 

@@ -103,8 +103,9 @@ class CheckoutSolution:
     def _create_list_of_letter(count_per_letter:list, total: int):
         letter_list = []
         for item in count_per_letter:
-            letter_list.append(item[1]*total)
+            letter_list.append(item[1]*total if item[0]>=total else item[1]*item[0])
         return letter_list
+
 
 
 

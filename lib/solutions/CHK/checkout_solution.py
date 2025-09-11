@@ -29,6 +29,7 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus:str):
         total = 0
+        skus = "".join(sorted(skus))
         for sku in self.prices.keys():
             sku_count = skus.count(sku)
             self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count) if sku_count > 0 else 0)

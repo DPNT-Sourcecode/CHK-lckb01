@@ -105,6 +105,3 @@ class CheckoutSolution:
             letter_list.append()
 
 
-
-
-

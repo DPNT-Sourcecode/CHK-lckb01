@@ -15,10 +15,9 @@ class CheckoutSolution:
         total = 0
         for sku in self.prices.keys():
             sku_count = skus.count(sku)
-            self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count))
-            total += self._calculate_cost(sku, skus.count(sku))
+            self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count) if sku_count > 0 else 0)
             skus = skus.replace(sku, "")
-        return -1 if skus else total
+        return -1 if skus else
 
 
     def _calculate_cost(self, item: str, item_count:int):
@@ -33,4 +32,5 @@ class CheckoutSolution:
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
+
 

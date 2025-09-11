@@ -1,3 +1,5 @@
+from math import floor
+
 
 class CheckoutSolution:
 
@@ -11,4 +13,6 @@ class CheckoutSolution:
             skus.count("B")
 
     def _calculate_cost(self, item_count:int, item: str):
-        return 
+        if item in self.offers:
+            return floor(item_count, self.offers[item]["quantity"])
+

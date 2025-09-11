@@ -97,7 +97,7 @@ class CheckoutSolution:
         return list_of_letters_to_remove
 
     def _add_group_offer_total(self, count_of_offer:int):
-        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"])
+        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"]*count_of_offer)
 
     @staticmethod
     def _create_list_of_letter(count_per_letter:list, total: int):
@@ -115,6 +115,7 @@ class CheckoutSolution:
                     letter_list.append(letter * total_letters_to_remove)
                     total_letters_to_remove = 0
         return letter_list
+
 
 
 

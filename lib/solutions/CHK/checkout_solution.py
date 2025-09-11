@@ -92,5 +92,6 @@ class CheckoutSolution:
             return list_of_letters_to_remove
         elif length_of_letter_count == 3:
             count_of_offers = count_per_letter[-1]
-            
+
+
 

@@ -19,7 +19,7 @@ class CheckoutSolution:
             self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count) if sku_count > 0 else 0)
             skus = skus.replace(sku, "")
         for item in self.reprocess.keys():
-
+            self._reprocess_item(item)
         return -1 if skus else self._calculate_total()
 
     def _calculate_total(self):
@@ -37,16 +37,15 @@ class CheckoutSolution:
                 offer_count = floor(item_count / offer["quantity"])
                 offer_price += offer_count * offer["price"]
                 item_count -= offer["quantity"] * offer_count
-                if offer["free"]:
+                if offer.get("free", {}):
                     self.reprocess[offer["free"]] = offer_count
             remainder_price += item_count * self.prices[item]
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
 
-    def _reprocess_item(self, sku:str, free_quantity:int):
-        price_with_free = self._calculate_cost(sku, self.total[sku]["quantity"] - free_quantity)
+    def _reprocess_item(self, sku:str):
+        price_with_free = self._calculate_cost(sku, self.total[sku]["quantity"] - self.reprocess[sku])
         total_before = self.total[sku]["price"]
         self.total[sku]["price"] = price_with_free if total_before > price_with_free else price_with_free
-        self.reprocess.pop(sku)
 

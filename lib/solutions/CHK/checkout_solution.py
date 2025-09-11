@@ -118,8 +118,3 @@ class CheckoutSolution:
         return letter_list
 
 
-
-
-
-
-

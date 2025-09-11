@@ -44,5 +44,9 @@ class CheckoutSolution:
         else:
             return item_count * self.prices[item]
 
-if __name__ == '__main__':
+    def _reprocess_item(self, sku:str, free_quantity:int):
+        price_with_free = self._calculate_cost(sku, self.total[sku]["quantity"] - free_quantity)
+        total_before = self.total[sku]["price"]
+        self.total[sku]["price"] = price_with_free if total_before > price_with_free else price_with_free
+        self.reprocess.pop(sku)
 

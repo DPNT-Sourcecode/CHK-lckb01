@@ -97,7 +97,7 @@ class CheckoutSolution:
             self._add_group_offer_total(count_of_offers)
             list_of_letters_to_remove = self._create_list_of_letter(count_per_letter, count_of_offers)
         else:
-            sum_of_last_counts = sum(i for i,j in count_per_letter[-(length_of_letter_count - 2)])
+            sum_of_last_counts = sum(i for i,j in count_per_letter[-(length_of_letter_count - 2):])
             second_largest_count = count_of_offers[1][0]
             count_of_offers =  second_largest_count if sum_of_last_counts <= sum_of_last_counts else sum_of_last_counts
             self._add_group_offer_total(count_of_offers)
@@ -113,6 +113,7 @@ class CheckoutSolution:
         for item in count_per_letter:
             letter_list.append(item[1]*total)
         return letter_list
+
 
 
 

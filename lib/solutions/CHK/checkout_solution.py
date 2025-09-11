@@ -7,7 +7,7 @@ class CheckoutSolution:
         self.prices = {"A": 50, "B": 30, "C": 20, "D": 15, "E": 40}
         self.offers = {"A":[{"quantity": 5, "price": 200}, {"quantity": 3, "price": 130}],
                        "B": [{"quantity": 2, "price": 45}],
-                       "E": [{"quantity": 2, "price": 80, "free": "E"}]
+                       "E": [{"quantity": 2, "price": 80, "free": "B"}]
                        }
         self.total = {}
     # skus = unicode string
@@ -38,7 +38,4 @@ class CheckoutSolution:
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
-
-
-
 

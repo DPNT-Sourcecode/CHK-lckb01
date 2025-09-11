@@ -37,9 +37,8 @@ class MyTestCase(unittest.TestCase):
 
     def test_return_correct_value_when_other_offer_affects_another_item(self):
         solution = CheckoutSolution()
-        response = solution.checkout("AAAAAAAEE")
-        assert response == 250
+        response = solution.checkout("BBBBBBBEE")
+        assert response == 215
 
 if __name__ == '__main__':
     unittest.main()
-

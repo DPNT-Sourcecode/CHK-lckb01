@@ -8,7 +8,7 @@ class CheckoutSolution:
         self.offers = {"A":[{"quantity": 5, "price": 200}, {"quantity": 3, "price": 130}],
                        "B": [{"quantity": 2, "price": 45}],
                        "E": [{"quantity": 2, "price": 80, "free": "B"}],
-                       "F": [{"quantity": 2, "price": 2, "free": "F"}],
+                       "F": [{"quantity": 3, "price": 20}],
                        }
         self.total = {}
         self.reprocess = {}

@@ -23,6 +23,3 @@ class CheckoutSolution:
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
-
-
-

@@ -100,8 +100,11 @@ class CheckoutSolution:
         self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"])
 
     def _create_list_of_letter(self, count_per_letter:list, total: int):
-        for count, letter in (count_per_letter):
-            return
+        letter_list = []
+        for item in count_per_letter:
+            letter_list.append()
+
+
 
 
 

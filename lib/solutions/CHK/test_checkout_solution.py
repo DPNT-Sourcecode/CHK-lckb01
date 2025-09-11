@@ -29,12 +29,14 @@ class MyTestCase(unittest.TestCase):
         response = solution.checkout("DDDDDDD")
         assert response == 105
 
-    def test_return_negative_one_on_incorrect_value(self):
+    def test_return_negative_one_on_unknown_sku(self):
         solution = CheckoutSolution()
         response = solution.checkout("AAAAAAAa")
         assert response == -1
+        response = solution.checkout("AAAAAAAE")
 
 
 if __name__ == '__main__':
     unittest.main()
+
 

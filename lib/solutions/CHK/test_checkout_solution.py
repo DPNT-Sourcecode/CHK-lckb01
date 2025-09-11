@@ -44,7 +44,10 @@ class MyTestCase(unittest.TestCase):
         solution = CheckoutSolution()
         response = solution.checkout("A")
         assert response == 50
+        response = solution.checkout("AA")
+        assert response == 100
 
 if __name__ == '__main__':
     unittest.main()
+
 

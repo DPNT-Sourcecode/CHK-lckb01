@@ -10,6 +10,7 @@ class CheckoutSolution:
                        "E": [{"quantity": 2, "price": 80, "free": "B"}]
                        }
         self.total = {}
+        self.reprocess = {}
     # skus = unicode string
     def checkout(self, skus:str):
         total = 0
@@ -17,6 +18,8 @@ class CheckoutSolution:
             sku_count = skus.count(sku)
             self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count) if sku_count > 0 else 0)
             skus = skus.replace(sku, "")
+        for item in self.reprocess.keys():
+
         return -1 if skus else self._calculate_total()
 
     def _calculate_total(self):
@@ -34,8 +37,12 @@ class CheckoutSolution:
                 offer_count = floor(item_count / offer["quantity"])
                 offer_price += offer_count * offer["price"]
                 item_count -= offer["quantity"] * offer_count
+                if offer["free"]:
+                    self.reprocess[offer["free"]] = offer_count
             remainder_price += item_count * self.prices[item]
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
+
+if __name__ == '__main__':
 

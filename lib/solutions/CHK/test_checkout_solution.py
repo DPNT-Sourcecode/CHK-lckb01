@@ -4,11 +4,37 @@ from lib.solutions.CHK.checkout_solution import CheckoutSolution
 
 
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
+    def test_abcd(self):
         solution = CheckoutSolution()
-        response = solution.checkout("AAABCD")
-        assert response == 195# add assertion here
+        response = solution.checkout("ABCD")
+        assert response == 115# add assertion here
+
+    def test_multiple_a(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("AAAAAAA")
+        assert response == 310# add assertion here
+
+    def test_multiple_b(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("BBBBBBB")
+        assert response == 165
+
+    def test_multiple_c(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("CCCCCCC")
+        assert response == 140
+
+    def test_multiple_d(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("DDDDDDD")
+        assert response == 105
+
+    def test_return_negative_one_on_incorrect_value(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("AAAAAAAa")
+        assert response == -1
 
 
 if __name__ == '__main__':
     unittest.main()
+

@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
     def test_multiple_a(self):
         solution = CheckoutSolution()
         response = solution.checkout("AAAAAAA")
-        assert response == 310# add assertion here
+        assert response == 300# add assertion here
 
     def test_multiple_b(self):
         solution = CheckoutSolution()
@@ -35,6 +35,11 @@ class MyTestCase(unittest.TestCase):
         assert response == -1
         response = solution.checkout("AAAAAAAE")
 
+    def test_return_correct_value_when_other_offer_affects_another_item(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("AAAAAAAEE")
+        assert response == 250
 
 if __name__ == '__main__':
     unittest.main()
+

@@ -33,7 +33,7 @@ class CheckoutSolution:
 
 
     def _calculate_cost(self, item: str, item_count:int):
-        if item in self.offers:
+        if item in self.offers.keys():
             offer_price = 0
             remainder_price = 0
             for offer in self.offers[item]:

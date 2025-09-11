@@ -15,6 +15,14 @@ class CheckoutSolution:
                        "B": [{"quantity": 2, "price": 45}],
                        "E": [{"quantity": 2, "price": 80, "free": "B"}],
                        "F": [{"quantity": 3, "price": 20}],
+                       "H": [{"quantity": 10, "price": 80}, {"quantity": 5, "price": 45}],
+                       "K": [{"quantity": 2, "price": 150}],
+                       "N": [{"quantity": 3, "price": 120, "free": "M"}],
+                       "P": [{"quantity": 5, "price": 200}],
+                       "Q": [{"quantity": 3, "price": 80}],
+                       "R": [{"quantity": 3, "price": 150, "free": "Q"}],
+                       "U": [{"quantity": 4, "price": 120}],
+                       "V": [{"quantity": 3, "price": 130}, {"quantity": 2, "price": 90}]
                        }
         self.total = {}
         self.reprocess = {}

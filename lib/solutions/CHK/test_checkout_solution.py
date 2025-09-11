@@ -49,7 +49,15 @@ class MyTestCase(unittest.TestCase):
         solution = CheckoutSolution()
         response = solution.checkout("FFFFFFF")
         assert response == 50
+        response = solution.checkout("UUUUUUUUU")
+        assert response == 280
+
+    def test_other_free_item(self):
+        solution = CheckoutSolution()
+        response = solution.checkout("NNNMEEBRRRQ")
+        assert response == 350
 
 
 if __name__ == '__main__':
     unittest.main()
+

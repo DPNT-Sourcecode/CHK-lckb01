@@ -103,8 +103,19 @@ class CheckoutSolution:
     def _create_list_of_letter(count_per_letter:list, total: int):
         letter_list = []
         total_letters_to_remove = total * 3
-
+        sku_to_count_dict = {sku[1]: sku[0] for sku in count_per_letter}
+        sku_in_cost_order = "ZSTYX"
+        while total_letters_to_remove:
+            for letter in sku_in_cost_order:
+                amount = sku_to_count_dict.get(letter, 0)
+                if total_letters_to_remove >= amount:
+                    letter_list.append(letter * amount)
+                    total_letters_to_remove -= amount
+                else:
+                    letter_list.append(letter * total_letters_to_remove)
+                    total_letters_to_remove = 0
         return letter_list
+
 
 
 

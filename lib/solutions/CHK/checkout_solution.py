@@ -89,9 +89,9 @@ class CheckoutSolution:
     def _list_of_number_of_group_offers_per_letter(self, count_per_letter:list):
         list_of_letters_to_remove = []
         count_of_offers = 0
-        length_of_letter_count = len(count_per_letter)
+        length_of_letter_count = sum(i for i,j in count_per_letter)
         if length_of_letter_count >= 3:
-            count_of_offers = sum(i for i,j in count_per_letter)//3
+            count_of_offers = length_of_letter_count//3
             self._add_group_offer_total(count_of_offers)
             list_of_letters_to_remove = self._create_list_of_letter(count_per_letter, count_of_offers)
         return list_of_letters_to_remove
@@ -115,8 +115,5 @@ class CheckoutSolution:
                     letter_list.append(letter * total_letters_to_remove)
                     total_letters_to_remove = 0
         return letter_list
-
-
-
 
 

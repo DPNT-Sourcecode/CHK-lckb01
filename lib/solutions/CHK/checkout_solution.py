@@ -28,10 +28,9 @@ class CheckoutSolution:
             for offer in self.offers[item]:
                 offer_count = floor(item_count / offer["quantity"])
                 offer_price += offer_count * offer["price"]
-                item_count -= offer["quantity"] * offer["price"]
+                item_count -= offer["quantity"]
             remainder_price += item_count * self.prices[item]
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
-
 

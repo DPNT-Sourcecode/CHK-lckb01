@@ -4,14 +4,14 @@ from math import floor
 class CheckoutSolution:
 
     def __init__(self):
-        self.prices = {"A": 50, "B": 45, "C": 35, "D": 20}
+        self.prices = {"A": 50, "B": 30, "C": 20, "D": 15}
         self.offers = {"A":{"quantity": 3, "price": 130}, "B": {"quantity": 2, "price": 45}}
     # skus = unicode string
     def checkout(self, skus:str):
         total = 0
         for sku in self.prices.keys():
             total += self._calculate_cost(sku, skus.count(sku))
-            skus.replace(sku, "")
+            skus = skus.replace(sku, "")
         return -1 if skus else total
 
 
@@ -23,5 +23,6 @@ class CheckoutSolution:
             return offer_price + remainder_price
         else:
             return item_count * self.prices[item]
+
 
 

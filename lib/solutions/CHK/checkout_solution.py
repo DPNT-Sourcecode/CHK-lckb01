@@ -8,11 +8,20 @@ class CheckoutSolution:
         self.offers = {"A":{"quantity": 3, "price": 130}, "B": {"quantity": 2, "price": 45}}
     # skus = unicode string
     def checkout(self, skus:str):
-        while skus:
-            skus.count("A")
-            skus.count("B")
+        total = 0
+        for sku in self.prices.keys():
+            total += self._calculate_cost(sku, skus.count(sku))
+            skus.replace(sku, "")
+        return -1 if skus else total
 
-    def _calculate_cost(self, item_count:int, item: str):
+
+
+    def _calculate_cost(self, item: str, item_count:int):
         if item in self.offers:
-            return floor(item_count, self.offers[item]["quantity"])
+            offer_price = floor(item_count /self.offers[item]["quantity"]) * self.offers[item]["price"]
+            remainder_price = item_count % self.offers[item]["quantity"] * self.prices[item]
+            return offer_price + remainder_price
+        else:
+            return item_count * self.prices[item]
+
 

@@ -34,7 +34,6 @@ class CheckoutSolution:
         skus = self._remove_group_offers_from_skus(skus)
         for sku in self.prices.keys():
             sku_count = skus.count(sku)
-            price = self._calculate_cost(sku, sku_count)
             self.total[sku] = dict(quantity=sku_count, price= self._calculate_cost(sku, sku_count) if sku_count > 0 else 0)
             skus = skus.replace(sku, "")
         for item in self.reprocess.keys():
@@ -91,22 +90,33 @@ class CheckoutSolution:
         list_of_letters_to_remove = []
         count_of_offers = 0
         length_of_letter_count = len(count_per_letter)
-        if length_of_letter_count >= 3:
-            count_of_offers = sum(i for i,j in count_per_letter)//3
+        if length_of_letter_count < 3:
+            return list_of_letters_to_remove
+        elif length_of_letter_count == 3:
+            count_of_offers = count_per_letter[-1][0]
+            self._add_group_offer_total(count_of_offers)
+            list_of_letters_to_remove = self._create_list_of_letter(count_per_letter, count_of_offers)
+        else:
+            sum_of_last_counts = sum(i for i,j in count_per_letter[-(length_of_letter_count - 2):])
+            second_largest_count = count_per_letter[1][0]
+            if second_largest_count > sum_of_last_counts:
+                count_of_offers = sum_of_last_counts
+            elif second_largest_count == sum_of_last_counts:
+                count_of_offers = second_largest_count if count_of_offers > second_largest_count else count_of_offers
             self._add_group_offer_total(count_of_offers)
             list_of_letters_to_remove = self._create_list_of_letter(count_per_letter, count_of_offers)
         return list_of_letters_to_remove
 
     def _add_group_offer_total(self, count_of_offer:int):
-        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"]*count_of_offer)
+        self.total["group"] = dict(quantity=count_of_offer, price= self.group_offers["cost"])
 
     @staticmethod
     def _create_list_of_letter(count_per_letter:list, total: int):
         letter_list = []
         for item in count_per_letter:
-            letters_used = (item[0] - item[0]//3) if item[0] < 3 else (item[0] - item[0]%3)
-            letter_list.append(item[1]*letters_used)
+            letter_list.append(item[1]*total)
         return letter_list
+
 
 
 
